@@ -1,0 +1,22 @@
+.post_block_container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.post_block_text {
+  font-size: 23px;
+  font-weight: 500;
+}
+.post_block_img_and_text {
+  display: flex;
+  gap: 30px;
+}
+.post_block_img {
+  object-fit: cover;
+  width: 350px;
+  height: 350px;
+  border: 1px solid #367a71
+}

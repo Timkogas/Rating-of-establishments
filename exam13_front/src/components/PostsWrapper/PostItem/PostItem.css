@@ -1,0 +1,33 @@
+.post_block {
+  border: 2px solid #41B3A3;
+  padding: 20px 20px;
+  margin-bottom: 20px;
+}
+
+.post_main_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post_img {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border: 5px solid #367a71
+}
+
+.post_img_and_title, .post_btns {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+.post_title {
+  font-size: 40px;
+  font-weight: 500;
+}
+.post_info_block {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px
+}
