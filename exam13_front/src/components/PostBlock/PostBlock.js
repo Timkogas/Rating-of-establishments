@@ -1,4 +1,5 @@
 import { uploadsUrlPosts } from '../../constants';
+import AddReviewForm from './AddReviewForm/AddReviewForm';
 import './PostBlock.css'
 
 
@@ -22,8 +23,10 @@ function PostBlock({ post }) {
           </div>
         </div>
 
+        <div className='post_block_hr'></div>
+
         <div className='post_block_gallery'>
-          <h2>Галлерея</h2>
+          <p className='post_block_title'>Галлерея</p>
           <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
           <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
           <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
@@ -37,13 +40,28 @@ function PostBlock({ post }) {
           <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
         </div>
 
+        <div className='post_block_hr'></div>
+
         <div className='post_block_gallery'>
-          <h2>Оценки заведения:</h2>
+          <p className='post_block_title'>Оценки заведения:</p>
           <h4>Общее: {post.avarageRating}/5</h4>
-          <p>Качевство еды: {post.ratingQuality}/5</p>
-          <p>Качевство персонала: {post.ratingService}/5</p>
-          <p>Качевство интерьера: {post.ratingInterior}/5</p>
+          <p>Качество еды: {post.ratingQuality}/5</p>
+          <p>Качество сервеса: {post.ratingService}/5</p>
+          <p>Качество интерьера: {post.ratingInterior}/5</p>
         </div>
+
+        <div className='post_block_hr'></div>
+
+        <div className='post_block_gallery'>
+          <p className='post_block_title'>Отзывы</p>
+
+        </div>
+
+        <div className='post_block_hr'></div>
+
+        <AddReviewForm
+
+        />
       </div>
 
     </>

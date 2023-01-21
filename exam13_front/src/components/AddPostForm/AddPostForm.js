@@ -5,7 +5,7 @@ import './AddPostForm.css'
 
 
 
-function AddPostForm({ fields, onChangeHandler, addPostHandler, filename, onFileChangeHandler, errorAdd, setApproval, approval }) {
+function AddPostForm({ fields, onChangeHandler, addPostHandler, filename, onFileChangeHandler, setApproval, approval }) {
 
   return (
     <form className='form' onSubmit={(e) => { addPostHandler(e) }}>
@@ -16,7 +16,6 @@ function AddPostForm({ fields, onChangeHandler, addPostHandler, filename, onFile
           name='title'
           state={fields}
           onChange={(e) => { onChangeHandler(e) }}
-          error={errorAdd}
         />
       </div>
 
@@ -26,7 +25,6 @@ function AddPostForm({ fields, onChangeHandler, addPostHandler, filename, onFile
           name='description'
           type='textarea'
           state={fields}
-          error={errorAdd}
           onChange={(e) => { onChangeHandler(e) }}
         />
       </div>
@@ -38,7 +36,6 @@ function AddPostForm({ fields, onChangeHandler, addPostHandler, filename, onFile
         name='image'
         widthWrapper='100wh'
         onChange={(e) => { onChangeHandler(e) }}
-        error={errorAdd}
       />
 
       <div className='form_input_wrapper form_input_wrapper_checkbox' >

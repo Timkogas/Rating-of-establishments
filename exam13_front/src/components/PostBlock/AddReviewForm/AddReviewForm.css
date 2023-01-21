@@ -1,0 +1,10 @@
+.select {
+  width: 40px;
+  margin-left: 10px;
+}
+.selects_wrapper {
+  display: flex;
+  align-items:  center;
+  gap: 60px;
+  justify-content: space-between;
+}

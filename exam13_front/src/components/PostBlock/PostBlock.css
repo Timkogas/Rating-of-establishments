@@ -5,23 +5,31 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 150px;
 }
+
 .post_block_text {
   font-size: 23px;
   font-weight: 500;
   margin-top: 50px;
 }
+.post_block_title {
+  font-size: 29px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
 .post_block_img_and_text {
   display: flex;
   gap: 30px;
 }
+
 .post_block_img {
   object-fit: cover;
   width: 350px;
   height: 350px;
   border: 1px solid #367a71
 }
+
 .post_block_gallery_item {
   display: inline-block;
   margin-right: 20px;
@@ -29,4 +37,12 @@
   object-fit: cover;
   width: 170px;
   height: 170px;
+}
+
+.post_block_hr {
+  margin: 20px 0;
+  padding: 0;
+  height: 0;
+  border: none;
+  border-top: 1px solid #333;
 }

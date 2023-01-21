@@ -11,7 +11,6 @@ function AddPost() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { errorAdd } = useSelector(state => state.posts)
   const [filename, setFilename] = useState("");
   const [fields, setFields] = useState({
     title: '',
@@ -67,7 +66,6 @@ function AddPost() {
   return (
     <>
       <AddPostForm
-        errorAdd={errorAdd}
         fields={fields}
         onChangeHandler={onChangeHandler}
         addPostHandler={addPostHandler}
