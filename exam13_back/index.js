@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { db } = require("./config");
 const users = require("./routes/users");
-const posts = require("./routes/posts");
+const places = require("./routes/places");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/users", users);
-app.use("/posts", posts);
+app.use("/places", places);
 
 
 const run = async () => {

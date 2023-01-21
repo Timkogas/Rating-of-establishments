@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const { nanoid } = require("nanoid");
 const config = require("../config");
-const Post = require("../models/Post");
+const Place = require("../models/Place");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 const permit = require("../middleware/permit");
@@ -22,10 +22,10 @@ const upload = multer({ storage });
 
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find()
+    const places = await Place.find()
       .sort({ datetime: -1 })
       .populate('user', 'username')
-    res.send(posts);
+    res.send(places);
   } catch (e) {
     res.sendStatus(502);
   }
@@ -33,30 +33,31 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id)
+    const place = await Place.findById(req.params.id)
       .populate('user', 'username')
-    if (!post) return res.sendStatus(404)
-    res.send(post);
+    if (!place) return res.sendStatus(404)
+    res.send(place);
   } catch (e) {
     res.sendStatus(404);
   }
 });
 
 router.post("/", auth, upload.single("image"), async (req, res) => {
-  const postData = req.body
+  const placeData = req.body
   try {
     const token = req.get('Authenticate')
     const user = await User.findOne({ token: token })
-    const post = new Post({
+    if (placeData.approval) return res.status(422).send({errors: {user: {message: 'Вы не согласны'}}})
+    const place = new Place({
       user: user,
-      title: postData.title,
-      description: postData.description,
+      title: placeData.title,
+      description: placeData.description,
     });
     if (req.file) {
-      post.image = req.file.filename;
+      place.image = req.file.filename;
     }
-    await post.save();
-    res.status(200).send(post);
+    await place.save();
+    res.status(200).send(place);
   } catch (e) {
     res.status(400).send({ e });
   }
@@ -64,7 +65,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
 
 router.delete("/:id", auth, permit('admin'), async (req, res) => {
   try {
-    await Post.deleteOne({ _id: req.body.post._id });
+    await Place.deleteOne({ _id: req.params.id });
     res.sendStatus(204);
   } catch (e) {
     return res.status(502).send(e);
