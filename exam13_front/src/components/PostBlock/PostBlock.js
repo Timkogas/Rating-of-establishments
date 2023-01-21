@@ -5,9 +5,10 @@ import './PostBlock.css'
 import ReviewsWrapper from './ReviewsWrapper/ReviewsWrapper';
 import { useSelector } from "react-redux";
 import AddPictureForm from './AddPictureForm/AddPictureForm';
+import GalleryWrapper from './GalleryWrapper/GalleryWrapper';
 
 
-function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, reviews, filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler }) {
+function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, reviews, filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler, picturesPost }) {
 
   const user = useSelector(state => state.users.user)
   let imageSrc
@@ -30,20 +31,9 @@ function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, r
 
         <div className='post_block_hr'></div>
 
-        <div className='post_block_gallery'>
-          <p className='post_block_title'>Галлерея</p>
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-          <img className='post_block_gallery_item' src={imageSrc} alt={post.title} />
-        </div>
+        <GalleryWrapper
+          picturesPost={picturesPost}
+        />
 
         <div className='post_block_hr'></div>
 
@@ -61,9 +51,10 @@ function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, r
           reviews={reviews}
         />
 
-        <div className='post_block_hr'></div>
+
 
         <HasAccess allowed={user}>
+          <div className='post_block_hr'></div>
           <AddReviewForm
             newReview={newReview}
             onChangeReviewHandler={onChangeReviewHandler}
@@ -71,8 +62,8 @@ function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, r
           />
         </HasAccess>
 
-        <div className='post_block_hr'></div>
         <HasAccess allowed={user}>
+          <div className='post_block_hr'></div>
           <AddPictureForm
             filename={filename}
             onChangePictureHandler={onChangePictureHandler}

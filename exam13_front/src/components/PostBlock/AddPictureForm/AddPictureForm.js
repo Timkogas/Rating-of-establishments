@@ -17,7 +17,7 @@ function AddPictureForm({ filename, addPictureHandler, onFileChangeHandler, onCh
         onChange={(e) => { onChangePictureHandler(e) }}
       />
 
-      <Button text='Добавить фото' width='40%' />
+      {filename ? <Button text='Добавить фото' width='40%' /> : null}
     </form>
   );
 }

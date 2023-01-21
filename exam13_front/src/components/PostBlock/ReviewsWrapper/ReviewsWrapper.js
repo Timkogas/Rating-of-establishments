@@ -10,7 +10,7 @@ function ReviewsWrapper({ reviews }) {
         <p className='post_block_title'>Отзывы</p>
       </div>
       <div className='reviews_list'>
-        {reviews.map((review) => {
+        {reviews.length ? reviews.map((review) => {
           return (<ReviewItem
             key={review._id}
             text={review.text}
@@ -20,7 +20,7 @@ function ReviewsWrapper({ reviews }) {
             ratingQuality={review.ratingQuality}
             ratingService={review.ratingService}
           />)
-        })}
+        }): 'Отзывов нет :с'}
       </div>
     </>
   );
