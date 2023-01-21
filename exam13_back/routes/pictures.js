@@ -43,6 +43,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
     const user = await User.findOne({ token: token })
     const picture = new Picture({
       user: user,
+      place: req.body?.place
     });
     if (req.file) {
       picture.image = req.file.filename;

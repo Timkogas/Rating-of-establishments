@@ -13,6 +13,10 @@ const PictureSchema = new Schema({
     ref: "Place",
     required: [true, 'Айди заведения обязателено']
   },
+  image: {
+    type: String,
+    required: [true, 'Изоображение заведения обязательно']
+  },
 });
 
 PictureSchema.plugin(idValidator, {

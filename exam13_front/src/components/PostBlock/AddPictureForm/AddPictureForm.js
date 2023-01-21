@@ -2,8 +2,8 @@ import Button from '../../UI/Button/Button';
 import InputForm from '../../UI/InputForm/InputForm';
 import './AddPictureForm.css'
 
-const ratings = [{ value: 0, text: 0 }, { value: 1, text: 1 }, { value: 2, text: 2 }, { value: 3, text: 3 }, { value: 4, text: 4 }, { value: 5, text: 5 },]
-function AddPictureForm({ filename, onChangeHandler, onFileChangeHandler, addPictureHandler }) {
+
+function AddPictureForm({ filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler }) {
 
   return (
     <form onSubmit={(e) => { addPictureHandler(e) }}>
@@ -14,7 +14,7 @@ function AddPictureForm({ filename, onChangeHandler, onFileChangeHandler, addPic
         filename={filename}
         name='image'
         widthWrapper='100wh'
-        onChange={(e) => { onChangeHandler(e) }}
+        onChange={(e) => { onChangePictureHandler(e) }}
       />
 
       <Button text='Добавить фото' width='40%' />

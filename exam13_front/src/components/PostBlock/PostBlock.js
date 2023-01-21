@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import AddPictureForm from './AddPictureForm/AddPictureForm';
 
 
-function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews }) {
+function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, reviews, filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler }) {
 
   const user = useSelector(state => state.users.user)
   let imageSrc
@@ -66,7 +66,7 @@ function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews
         <HasAccess allowed={user}>
           <AddReviewForm
             newReview={newReview}
-            onChangeHandler={onChangeHandler}
+            onChangeReviewHandler={onChangeReviewHandler}
             addReviewHandler={addReviewHandler}
           />
         </HasAccess>
@@ -74,6 +74,10 @@ function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews
         <div className='post_block_hr'></div>
         <HasAccess allowed={user}>
           <AddPictureForm
+            filename={filename}
+            onChangePictureHandler={onChangePictureHandler}
+            addPictureHandler={addPictureHandler}
+            onFileChangeHandler={onFileChangeHandler}
           />
         </HasAccess>
       </div>
