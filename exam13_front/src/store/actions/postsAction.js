@@ -114,3 +114,16 @@ export const addPicture = (picture) => {
     }
   };
 };
+
+export const deletePicture = (pictureId) => {
+  return async (dispatch) => {
+    dispatch(fetchPostsRequest())
+    try {
+      await axios.delete(`/pictures/${pictureId}`)
+      dispatch(deletePostSuccess())
+    } catch (e) {
+      dispatch(fetchPostsError(e?.response?.data?.message))
+
+    }
+  }
+}

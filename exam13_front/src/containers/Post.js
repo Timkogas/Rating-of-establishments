@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Preloader from "../components/UI/Preloader/Preloader";
 import { useEffect, useState } from "react";
-import { addPicture, fetchPictures, fetchPost } from "../store/actions/postsAction";
+import { addPicture, deletePicture, fetchPictures, fetchPost } from "../store/actions/postsAction";
 import PostBlock from "../components/PostBlock/PostBlock";
 import { addReview, fetchReviews } from "../store/actions/reviewsAction";
 
@@ -103,6 +103,12 @@ function Post() {
     setFilename('')
   }
 
+  const deletePictureHandler = async(e, id) => {
+    e.stopPropagation()
+    await dispatch(deletePicture(id))
+    await dispatch(fetchPictures(params.id))
+  }
+
 
 
   return (
@@ -120,6 +126,7 @@ function Post() {
         onChangePictureHandler={onChangePictureHandler}
         addPictureHandler={addPictureHandler}
         onFileChangeHandler={onFileChangeHandler}
+        deletePictureHandler={deletePictureHandler}
       />
     </>
   );

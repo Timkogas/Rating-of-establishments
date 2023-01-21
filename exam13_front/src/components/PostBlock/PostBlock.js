@@ -8,7 +8,7 @@ import AddPictureForm from './AddPictureForm/AddPictureForm';
 import GalleryWrapper from './GalleryWrapper/GalleryWrapper';
 
 
-function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, reviews, filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler, picturesPost }) {
+function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, reviews, filename, addPictureHandler, onFileChangeHandler, onChangePictureHandler, picturesPost, deletePictureHandler }) {
 
   const user = useSelector(state => state.users.user)
   let imageSrc
@@ -32,6 +32,7 @@ function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, r
         <div className='post_block_hr'></div>
 
         <GalleryWrapper
+          deletePictureHandler={deletePictureHandler}
           picturesPost={picturesPost}
         />
 

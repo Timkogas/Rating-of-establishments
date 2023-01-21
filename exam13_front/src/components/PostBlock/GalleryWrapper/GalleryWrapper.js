@@ -2,7 +2,7 @@
 import GalleryItem from './GalleryItem/GalleryItem';
 import './GalleryWrapper.css'
 
-function GalleryWrapper({ picturesPost }) {
+function GalleryWrapper({ picturesPost, deletePictureHandler }) {
 
   return (
     <>
@@ -12,6 +12,7 @@ function GalleryWrapper({ picturesPost }) {
           return (<GalleryItem
             key={picture._id}
             picture={picture}
+            deletePictureHandler={(e)=>{deletePictureHandler(e, picture._id)}}
           />)
         }) : 'Картинок нет :с'}
       </div>

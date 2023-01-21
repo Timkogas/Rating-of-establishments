@@ -58,7 +58,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
 router.delete("/:id", auth, permit('admin'), async (req, res) => {
   try {
     const picture = await Picture.findById(req.params.id);
-    if (!comment) return res.sendStatus(404);
+    if (!picture) return res.sendStatus(404);
     await Picture.deleteOne({ _id: picture._id });
     res.sendStatus(204);
   } catch (e) {
