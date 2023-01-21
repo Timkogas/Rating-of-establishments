@@ -5,6 +5,7 @@ const { db } = require("./config");
 const users = require("./routes/users");
 const places = require("./routes/places");
 const reviews = require("./routes/reviews");
+const pictures = require("./routes/pictures");
 const app = express();
 
 const port = 8000;
@@ -15,6 +16,7 @@ app.use(express.static("public"));
 app.use("/users", users);
 app.use("/places", places);
 app.use("/reviews", reviews);
+app.use("/pictures", pictures);
 
 
 const run = async () => {

@@ -18,8 +18,8 @@ function PostItem({ title, img, deletePostHandler, onClickPostHandler, avarageRa
 
         <div className='post_info_block'>
           <p className='post_title'>{title}</p>
-          <span>{avarageRating  || 0}/5 средняя оценка</span>
-          <span>{totalReviews} количество отзывов</span>
+          <span>{avarageRating ? avarageRating + '/5 средняя оценка': 'Отзывов нет'}</span>
+          <span>{totalReviews ? totalReviews + ' количество отзывов' : null}</span>
         </div>
       </div>
     </>
