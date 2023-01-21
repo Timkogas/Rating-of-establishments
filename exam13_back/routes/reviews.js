@@ -10,10 +10,15 @@ const router = express.Router();
 
 router.post("/", auth, async (req, res) => {
   const review = new Review(req.body);
+  const place = await Place.findById(req.body.place);
+  place.ratingQuality += review.ratingQuality
+  place.ratingService += review.ratingService
+  place.ratingInterior += review.ratingInterior
   try {
     await review.save();
+    await place.save()
     res.status(201).send(review);
-  } catch(e) {
+  } catch (e) {
     res.status(400).send(e);
   }
 });
@@ -21,25 +26,29 @@ router.post("/", auth, async (req, res) => {
 router.get("/", async (req, res) => {
   let query;
   if (req.query.post) {
-    query = {place: req.query.post};
+    query = { place: req.query.post };
   }
   try {
     const reviews = await Review.find(query)
-      .sort({datetime: -1})
+      .sort({ datetime: -1 })
       .populate('user', 'username')
     res.send(reviews);
-  } catch(e) {
+  } catch (e) {
     res.sendStatus(502);
   }
 });
 
 router.delete("/:id", auth, permit('admin'), async (req, res) => {
-  const comment = await Comment.findById(req.params.id);
-  if (!comment) return res.sendStatus(404);
   try {
-    await Comment.deleteOne({_id: comment._id});
+    const review = await Review.findById(req.params.id);
+    if (!comment) return res.sendStatus(404);
+    const place = await Place.findById(req.body.place);
+    place.ratingQuality -= review.ratingQuality
+    place.ratingService -= review.ratingService
+    place.ratingInterior -= review.ratingInterior
+    await Review.deleteOne({ _id: review._id });
     res.sendStatus(204);
-  } catch(e) {
+  } catch (e) {
     return res.status(502).send(e);
   }
 });

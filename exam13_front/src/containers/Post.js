@@ -43,13 +43,14 @@ function Post() {
         ...newReview,
         "place": params.id,
     };
-    dispatch(addReview(commentData, params.id));
+    await dispatch(addReview(commentData));
     setNewReview({
       text: '',
       ratingQuality: 0,
       ratingService: 0,
       ratingInterior: 0,
     });
+    await dispatch(fetchPost(params.id))
 };
 
   return (

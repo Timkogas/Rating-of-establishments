@@ -10,7 +10,6 @@ function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews
     imageSrc = "https://www.peoples.ru/character/movie/shrek/shrek_4.jpg"
   }
 
-  console.log(reviews)
   return (
     <>
       <div className='post_block_container'>

@@ -28,13 +28,12 @@ const addReviewsSuccess = () => {
   return { type: ADD_POST_SUCCESS};
 };
 
-export const addReview = (review, postId) => {
+export const addReview = (review) => {
   return async (dispatch) => {
     dispatch(fetchReviewsRequest())
     try {
       await axios.post(`/reviews`, review);
       dispatch(addReviewsSuccess)
-      dispatch(fetchReviews(postId))
     } catch (error) {
       dispatch(fetchReviewsError(error.response.data.e))
     }

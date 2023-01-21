@@ -26,6 +26,10 @@ router.get("/", async (req, res) => {
     const places = await Place.find()
       .sort({ title: -1 })
       .populate('user', 'username')
+    for (let place of places) {
+      const reviews = await (await Review.find({ place: place._id }))
+      place.avarageRating = (((place.ratingQuality / reviews.length) + (place.ratingService / reviews.length) + (place.ratingInterior / reviews.length)) / 3).toFixed(1)
+    }
     res.send(places);
   } catch (e) {
     res.sendStatus(502);
@@ -36,6 +40,11 @@ router.get("/:id", async (req, res) => {
   try {
     const place = await Place.findById(req.params.id)
       .populate('user', 'username')
+    const reviews = await (await Review.find({ place: req.params.id }))
+    place.ratingQuality = (place.ratingQuality / reviews.length).toFixed(1)
+    place.ratingService = (place.ratingService / reviews.length).toFixed(1)
+    place.ratingInterior = (place.ratingInterior / reviews.length).toFixed(1)
+    place.avarageRating = ((place.ratingQuality + place.ratingService + place.ratingInterior) / 3).toFixed(1)
     if (!place) return res.sendStatus(404)
     res.send(place);
   } catch (e) {
@@ -70,7 +79,7 @@ router.delete("/:id", auth, permit('admin'), async (req, res) => {
   const post = await Post.findById(req.params.id);
   if (!post) return res.sendStatus(404);
   try {
-    await Review.deleteMany({post: post._id});
+    await Review.deleteMany({ post: post._id });
     await Place.deleteOne({ _id: req.params.id });
     res.sendStatus(204);
   } catch (e) {
