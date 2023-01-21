@@ -1,0 +1,17 @@
+.review {
+  display: block;
+  border: 2px solid #41B3A3;
+  padding: 20px 20px;
+}
+.review_author {
+  margin-left: 20px;
+}
+.review_text_block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.review_ratings {
+  display: flex;
+  flex-direction: column;
+}

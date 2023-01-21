@@ -18,7 +18,7 @@ function PostItem({ title, img, deletePostHandler, onClickPostHandler, avarageRa
 
         <div className='post_info_block'>
           <p className='post_title'>{title}</p>
-          <span>{avarageRating}/5 средняя оценка</span>
+          <span>{avarageRating  || 0}/5 средняя оценка</span>
         </div>
       </div>
     </>

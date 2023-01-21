@@ -51,6 +51,7 @@ function Post() {
       ratingInterior: 0,
     });
     await dispatch(fetchPost(params.id))
+    await dispatch(fetchReviews(params.id))
 };
 
   return (

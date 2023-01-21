@@ -1,8 +1,14 @@
 import { uploadsUrlPosts } from '../../constants';
+import HasAccess from '../UI/HasAccess/HasAccess';
 import AddReviewForm from './AddReviewForm/AddReviewForm';
 import './PostBlock.css'
+import ReviewsWrapper from './ReviewsWrapper/ReviewsWrapper';
+import { useSelector } from "react-redux";
 
-function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews}) {
+
+function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews }) {
+
+  const user = useSelector(state => state.users.user)
   let imageSrc
   if (post?.image) {
     imageSrc = `${uploadsUrlPosts}/${post?.image}`;
@@ -42,25 +48,26 @@ function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews
 
         <div className='post_block_gallery'>
           <p className='post_block_title'>Оценки заведения:</p>
-          <h4>Общее: {post.avarageRating}/5</h4>
-          <p>Качество еды: {post.ratingQuality}/5</p>
-          <p>Качество сервеса: {post.ratingService}/5</p>
-          <p>Качество интерьера: {post.ratingInterior}/5</p>
+          <h4>Общее: {post.avarageRating || 0}/5</h4>
+          <p>Качество еды: {post.ratingQuality || 0}/5</p>
+          <p>Качество сервеса: {post.ratingService || 0}/5</p>
+          <p>Качество интерьера: {post.ratingInterior || 0}/5</p>
         </div>
 
         <div className='post_block_hr'></div>
 
-        <div className='post_block_gallery'>
-          <p className='post_block_title'>Отзывы</p>
-        </div>
-
-        <div className='post_block_hr'></div>
-
-        <AddReviewForm
-          newReview={newReview}
-          onChangeHandler={onChangeHandler}
-          addReviewHandler={addReviewHandler}
+        <ReviewsWrapper
+          reviews={reviews}
         />
+
+        <div className='post_block_hr'></div>
+        <HasAccess allowed={user}>
+          <AddReviewForm
+            newReview={newReview}
+            onChangeHandler={onChangeHandler}
+            addReviewHandler={addReviewHandler}
+          />
+        </HasAccess>
       </div>
 
     </>
