@@ -38,6 +38,9 @@ const PlaceSchema = new Schema({
   },
   totalReviews: {
     type: Number,
+  },
+  totalRictures: {
+    type: Number,
   }
 });
 PlaceSchema.pre("save", async function (next) {

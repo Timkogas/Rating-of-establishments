@@ -8,6 +8,7 @@ const auth = require("../middleware/auth");
 const User = require("../models/User");
 const permit = require("../middleware/permit");
 const Review = require("../models/Review");
+const Picture = require("../models/Picture");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -27,9 +28,11 @@ router.get("/", async (req, res) => {
       .sort({ title: -1 })
       .populate('user', 'username')
     for (let place of places) {
-      const reviews = await (await Review.find({ place: place._id }))
+      const pictures = await Picture.find({place: place._id})
+      const reviews = await Review.find({ place: place._id })
       place.avarageRating = (((place.ratingQuality / reviews.length) + (place.ratingService / reviews.length) + (place.ratingInterior / reviews.length)) / 3).toFixed(1)
       place.totalReviews = reviews.length
+      place.totalRictures = pictures.length
     }
     res.send(places);
   } catch (e) {

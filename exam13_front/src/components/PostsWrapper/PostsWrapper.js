@@ -21,6 +21,7 @@ function PostsWrapper({ posts, deletePostHandler, onClickPostHandler }) {
               avarageRating={post.avarageRating}
               deletePostHandler={(e)=>{deletePostHandler(e, post._id)}}
               totalReviews={post.totalReviews}
+              totalRictures={post.totalRictures}
             />)
 
         }) : <h1>Нет заведений ;c</h1>}

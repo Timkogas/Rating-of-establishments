@@ -7,6 +7,7 @@
   display: inline-block;
   margin-right: 40px;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .post_main_info {
