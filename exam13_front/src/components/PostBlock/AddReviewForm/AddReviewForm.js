@@ -3,10 +3,10 @@ import InputForm from '../../UI/InputForm/InputForm';
 import './AddReviewForm.css'
 
 const ratings = [{ value: 0, text: 0 }, { value: 1, text: 1 }, { value: 2, text: 2 }, { value: 3, text: 3 }, { value: 4, text: 4 }, { value: 5, text: 5 },]
-function AddReviewForm({newReview, onChangeHandler}) {
+function AddReviewForm({newReview, onChangeHandler, addReviewHandler}) {
 
   return (
-    <form onSubmit={() => { }}>
+    <form onSubmit={(e) => { addReviewHandler(e)}}>
       <p className='post_block_title'>Добавить отзыв</p>
       <InputForm
         name='text'
@@ -47,7 +47,7 @@ function AddReviewForm({newReview, onChangeHandler}) {
           </select>
         </div>
 
-        <Button text='Добавить отзыв' width='40%' />
+        {newReview?.text ? <Button text='Добавить отзыв' width='40%' /> : <div style={{width: '40%', height: '50px'}}></div> }
       </div>
     </form>
   );

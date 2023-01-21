@@ -2,7 +2,7 @@ import { uploadsUrlPosts } from '../../constants';
 import AddReviewForm from './AddReviewForm/AddReviewForm';
 import './PostBlock.css'
 
-function PostBlock({ post, newReview, onChangeHandler }) {
+function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews}) {
   let imageSrc
   if (post?.image) {
     imageSrc = `${uploadsUrlPosts}/${post?.image}`;
@@ -10,7 +10,7 @@ function PostBlock({ post, newReview, onChangeHandler }) {
     imageSrc = "https://www.peoples.ru/character/movie/shrek/shrek_4.jpg"
   }
 
-
+  console.log(reviews)
   return (
     <>
       <div className='post_block_container'>
@@ -53,7 +53,6 @@ function PostBlock({ post, newReview, onChangeHandler }) {
 
         <div className='post_block_gallery'>
           <p className='post_block_title'>Отзывы</p>
-
         </div>
 
         <div className='post_block_hr'></div>
@@ -61,6 +60,7 @@ function PostBlock({ post, newReview, onChangeHandler }) {
         <AddReviewForm
           newReview={newReview}
           onChangeHandler={onChangeHandler}
+          addReviewHandler={addReviewHandler}
         />
       </div>
 

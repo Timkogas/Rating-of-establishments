@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import usersReducer from './store/reducers/usersReducer';
 import postsReducer from './store/reducers/postsReducer';
 import axios from './axiosInstance'
+import reviewsReducer from './store/reducers/reviewsReducer';
 
 
 const localStorageMiddleware = ({getState}) => (next) => (action) => {
@@ -25,7 +26,8 @@ const loadFromLocalStorage = () => {
 const store = configureStore({
   reducer: {
     users: usersReducer,
-    posts: postsReducer
+    posts: postsReducer,
+    reviews: reviewsReducer
   },
   preloadedState: loadFromLocalStorage(),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware)

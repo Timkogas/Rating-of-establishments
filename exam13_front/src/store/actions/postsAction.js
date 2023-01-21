@@ -61,7 +61,6 @@ export const addPost = (post, navigate) => {
       dispatch(setNullAddPostError())
       navigate(`/`)
     } catch (error) {
-      console.log(error.response.data.e)
       dispatch(addPostError(error.response.data.e))
     }
   };

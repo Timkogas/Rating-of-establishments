@@ -4,13 +4,14 @@ import Preloader from "../components/UI/Preloader/Preloader";
 import { useEffect, useState } from "react";
 import { fetchPost } from "../store/actions/postsAction";
 import PostBlock from "../components/PostBlock/PostBlock";
+import { addReview, fetchReviews } from "../store/actions/reviewsAction";
 
 
 function Post() {
   const params = useParams()
   const dispatch = useDispatch()
   const {post, loading} = useSelector(state=>state.posts)
-
+  const {reviews} = useSelector(state=>state.reviews)
   const [newReview, setNewReview] = useState({
     text: '',
     ratingQuality: 0,
@@ -33,15 +34,33 @@ function Post() {
 
   useEffect(()=>{
     dispatch(fetchPost(params.id))
+    dispatch(fetchReviews(params.id))
   }, [params, dispatch])
+
+  const addReviewHandler = async (e) => {
+    e.preventDefault();
+    const commentData = {
+        ...newReview,
+        "place": params.id,
+    };
+    dispatch(addReview(commentData, params.id));
+    setNewReview({
+      text: '',
+      ratingQuality: 0,
+      ratingService: 0,
+      ratingInterior: 0,
+    });
+};
 
   return (
     <>
       <Preloader showPreloader={loading}/>
       <PostBlock
+        reviews={reviews}
         post={post}
         newReview={newReview}
         onChangeHandler={onChangeHandler}
+        addReviewHandler={addReviewHandler}
       />
     </>
   );
