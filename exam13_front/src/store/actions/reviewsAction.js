@@ -33,7 +33,7 @@ export const addReview = (review) => {
     dispatch(fetchReviewsRequest())
     try {
       await axios.post(`/reviews`, review);
-      dispatch(addReviewsSuccess)
+      dispatch(addReviewsSuccess())
     } catch (error) {
       dispatch(fetchReviewsError(error.response.data.e))
     }
