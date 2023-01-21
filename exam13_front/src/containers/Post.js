@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Preloader from "../components/UI/Preloader/Preloader";
 import { useEffect, useState } from "react";
 import { fetchPost } from "../store/actions/postsAction";
@@ -10,7 +10,7 @@ import { addReview, fetchReviews } from "../store/actions/reviewsAction";
 function Post() {
   const params = useParams()
   const dispatch = useDispatch()
-  const {post, loading} = useSelector(state=>state.posts)
+  const {post, loading, picturesPost} = useSelector(state=>state.posts, shallowEqual)
   const {reviews} = useSelector(state=>state.reviews)
   const [newReview, setNewReview] = useState({
     text: '',
@@ -63,6 +63,7 @@ function Post() {
         newReview={newReview}
         onChangeHandler={onChangeHandler}
         addReviewHandler={addReviewHandler}
+        picturesPost={picturesPost}
       />
     </>
   );

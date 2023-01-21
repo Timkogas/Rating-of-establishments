@@ -4,6 +4,7 @@ import AddReviewForm from './AddReviewForm/AddReviewForm';
 import './PostBlock.css'
 import ReviewsWrapper from './ReviewsWrapper/ReviewsWrapper';
 import { useSelector } from "react-redux";
+import AddPictureForm from './AddPictureForm/AddPictureForm';
 
 
 function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews }) {
@@ -61,11 +62,18 @@ function PostBlock({ post, newReview, onChangeHandler, addReviewHandler, reviews
         />
 
         <div className='post_block_hr'></div>
+
         <HasAccess allowed={user}>
           <AddReviewForm
             newReview={newReview}
             onChangeHandler={onChangeHandler}
             addReviewHandler={addReviewHandler}
+          />
+        </HasAccess>
+
+        <div className='post_block_hr'></div>
+        <HasAccess allowed={user}>
+          <AddPictureForm
           />
         </HasAccess>
       </div>
