@@ -54,7 +54,7 @@ function PostBlock({ post, newReview, onChangeReviewHandler, addReviewHandler, r
         />
 
 
-        {reviews.find((review) => { return review.user._id === user._id })?._id ?
+        {reviews.find((review) => { return review?.user?._id === user?._id })?._id ?
           <>
             <div className='post_block_hr'>
             </div>
