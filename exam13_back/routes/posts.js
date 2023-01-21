@@ -6,7 +6,7 @@ const config = require("../config");
 const Post = require("../models/Post");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
-const authorPost = require("../middleware/authorPost");
+const permit = require("../middleware/permit");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -62,7 +62,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
   }
 });
 
-router.delete("/:id", auth, authorPost, async (req, res) => {
+router.delete("/:id", auth, permit('admin'), async (req, res) => {
   try {
     await Post.deleteOne({ _id: req.body.post._id });
     res.sendStatus(204);
