@@ -23,7 +23,7 @@ const upload = multer({ storage });
 router.get("/", async (req, res) => {
   try {
     const places = await Place.find()
-      .sort({ datetime: -1 })
+      .sort({ title: -1 })
       .populate('user', 'username')
     res.send(places);
   } catch (e) {
@@ -47,7 +47,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
   try {
     const token = req.get('Authenticate')
     const user = await User.findOne({ token: token })
-    if (placeData.approval) return res.status(422).send({errors: {user: {message: 'Вы не согласны'}}})
+    // if (!placeData.approval) return res.status(422)
     const place = new Place({
       user: user,
       title: placeData.title,

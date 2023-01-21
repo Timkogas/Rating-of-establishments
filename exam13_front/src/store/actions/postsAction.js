@@ -15,7 +15,7 @@ export const fetchPosts = () => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
-      const response = await axios.get(`/posts`);
+      const response = await axios.get(`/places`);
       dispatch(fetchPostsSuccess(response.data))
     } catch (e) {
       dispatch(fetchPostsError(e?.response?.data?.message));
@@ -31,7 +31,7 @@ export const deletePost = (postId) => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest())
     try {
-      await axios.delete(`/posts/${postId}`)
+      await axios.delete(`/places/${postId}`)
       dispatch(deletePostSuccess())
       dispatch(fetchPosts())
     } catch (e) {
@@ -56,11 +56,12 @@ export const addPost = (post) => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest())
     try {
-      await axios.post(`/posts`, post);
+      await axios.post(`/places`, post);
       dispatch(addPostSuccess());
       dispatch(setNullAddPostError())
       dispatch(fetchPosts())
     } catch (error) {
+      console.log(error.response.data.e)
       dispatch(addPostError(error.response.data.e))
     }
   };
@@ -74,7 +75,7 @@ export const fetchPost = (id) => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
-      const response = await axios.get(`/posts/${id}`);
+      const response = await axios.get(`/places/${id}`);
       dispatch(fetchPostSuccess(response.data))
     } catch (e) {
       dispatch(fetchPostsError(e?.response?.data?.message));

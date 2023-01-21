@@ -25,32 +25,12 @@ function App() {
           <Route path='/sign-up' element={<Register />} />
           <Route path='/log-in' element={<Login />} />
 
-          <Route path='/' element={
-            <ProtectedRoute
-              isAllowed={user}
-              redirectUrl={"/log-in"}
-            >
-              <Posts />
-            </ProtectedRoute>
-          } />
+          <Route path='/' element={<Posts />} />
 
-          <Route path='/posts' element={
-            <ProtectedRoute
-              isAllowed={user}
-              redirectUrl={"/log-in"}
-            >
-              <Posts />
-            </ProtectedRoute>
-          } />
+          <Route path='/posts' element={<Posts />} />
+          <Route path='/add-post' element={<Posts />} />
 
-          <Route path='/posts/:id' element={
-            <ProtectedRoute
-              isAllowed={user}
-              redirectUrl={"/log-in"}
-            >
-              <Post/>
-            </ProtectedRoute>
-          } />
+          <Route path='/posts/:id' element={<Post />} />
 
           <Route path='*' element={<h1>404</h1>} />
         </Route>

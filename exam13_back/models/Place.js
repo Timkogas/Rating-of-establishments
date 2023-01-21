@@ -21,13 +21,20 @@ const PlaceSchema = new Schema({
     required: [true, 'Изоображение заведения обязательно']
   },
   ratingQuality: {
-    type: Number
+    type: Number,
+    default: 0,
   },
   ratingService: {
-    type: Number
+    type: Number,
+    default: 0,
   },
   ratingInterior: {
-    type: Number
+    type: Number,
+    default: 0,
+  },
+  avarageRating: {
+    type: Number,
+    default: 0,
   },
 });
 PlaceSchema.pre("save", async function (next) {

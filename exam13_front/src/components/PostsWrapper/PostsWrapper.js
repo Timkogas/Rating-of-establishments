@@ -4,6 +4,7 @@ import Button from '../UI/Button/Button';
 
 
 function PostsWrapper({ handleOpenModal, posts, deletePostHandler, onClickPostHandler }) {
+  console.log(posts)
   return (
     <>
       <div className='posts_header'>
@@ -22,9 +23,8 @@ function PostsWrapper({ handleOpenModal, posts, deletePostHandler, onClickPostHa
               key={post._id}
               title={post.title}
               img={post.image}
-              author={post?.user?.username}
               onClickPostHandler={()=>{onClickPostHandler(post._id)}}
-              datetime={new Date(post.datetime).toLocaleString()}
+              avarageRating={post.avarageRating}
               deletePostHandler={(e)=>{deletePostHandler(e, post._id)}}
             />)
 
