@@ -3,7 +3,7 @@ import PostItem from './PostItem/PostItem';
 
 
 function PostsWrapper({ posts, deletePostHandler, onClickPostHandler }) {
-  console.log(posts)
+
   return (
     <>
       <div className='posts_header'>

@@ -103,8 +103,7 @@ function Post() {
     setFilename('')
   }
 
-  console.log(picturesPost)
-  console.log(picture)
+
 
   return (
     <>

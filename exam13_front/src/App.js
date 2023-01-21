@@ -29,7 +29,14 @@ function App() {
           <Route path='/' element={<Posts />} />
 
           <Route path='/posts' element={<Posts />} />
-          <Route path='/add-post' element={<AddPost />} />
+          <Route path='/add-post' element={
+            <ProtectedRoute
+              isAllowed={user}
+              redirectUrl={"/log-in"}
+            >
+              <AddPost/>
+            </ProtectedRoute>
+          } />
 
           <Route path='/posts/:id' element={<Post />} />
 
