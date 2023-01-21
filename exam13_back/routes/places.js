@@ -44,10 +44,12 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", auth, upload.single("image"), async (req, res) => {
   const placeData = req.body
+  if (placeData.approval === 'false') {
+    return res.status(400)
+  }
   try {
     const token = req.get('Authenticate')
     const user = await User.findOne({ token: token })
-    // if (!placeData.approval) return res.status(422)
     const place = new Place({
       user: user,
       title: placeData.title,

@@ -52,14 +52,14 @@ const setNullAddPostError = () => {
 }
 
 
-export const addPost = (post) => {
+export const addPost = (post, navigate) => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest())
     try {
       await axios.post(`/places`, post);
       dispatch(addPostSuccess());
       dispatch(setNullAddPostError())
-      dispatch(fetchPosts())
+      navigate(`/`)
     } catch (error) {
       console.log(error.response.data.e)
       dispatch(addPostError(error.response.data.e))
@@ -78,6 +78,7 @@ export const fetchPost = (id) => {
       const response = await axios.get(`/places/${id}`);
       dispatch(fetchPostSuccess(response.data))
     } catch (e) {
+      console.log(e.response.data)
       dispatch(fetchPostsError(e?.response?.data?.message));
     }
   };

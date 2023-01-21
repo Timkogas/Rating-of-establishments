@@ -23,8 +23,7 @@ const postsReducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
       return { ...state, loading: false, };
     case ADD_POST_ERROR:
-      const textError = getErrorTextFromResponse(action.error)
-      return { ...state, loading: false, errorAdd: textError}
+      return { ...state, loading: false, errorAdd: action.error}
     case SET_NULL_ADD_POST_ERROR:
       return { ...state, errorAdd: null }
     case FETCH_POST_SUCCESS: 

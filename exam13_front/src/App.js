@@ -5,6 +5,7 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import Posts from './containers/Posts'
 import Post from './containers/Post';
+import AddPost from './containers/AddPost';
 
 const ProtectedRoute = ({ isAllowed, redirectUrl, children }) => {
   if (!isAllowed) {
@@ -28,7 +29,7 @@ function App() {
           <Route path='/' element={<Posts />} />
 
           <Route path='/posts' element={<Posts />} />
-          <Route path='/add-post' element={<Posts />} />
+          <Route path='/add-post' element={<AddPost />} />
 
           <Route path='/posts/:id' element={<Post />} />
 

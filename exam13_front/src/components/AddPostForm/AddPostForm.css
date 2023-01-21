@@ -1,3 +1,7 @@
+.form {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .form_title {
   color: black;
   font-size: 40px;
@@ -5,12 +9,16 @@
 }
 
 .form_input_text {
-  width: 120px;
+  width: 350px;
 }
 
 .form_input_wrapper {
   display: flex;
-  justify-content: space-between;
-  gap: 50px;
   margin-bottom: 20px;
+}
+.form_input_wrapper_checkbox {
+  font-size: 15px;
+}
+.checkbox_text {
+  margin-left: 5px;
 }

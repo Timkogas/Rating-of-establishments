@@ -14,7 +14,7 @@ function UserMenu() {
   return (
     <HasAccess allowed>
       <nav className='header_nav_menu'>
-        <NavLink to='/posts' className='header_link'>Посты</NavLink>
+        <NavLink to='/add-post' className='header_link'>Добавить заведение</NavLink>
         <p className='header_link header_text'> Привет, <span> </span>
           {user.username}!
         </p>
