@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", auth, permit('admin'), async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     const review = await Review.findById(req.params.id);
     if (!review) return res.sendStatus(404);
