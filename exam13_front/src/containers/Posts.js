@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PostsWrapper from "../components/PostsWrapper/PostsWrapper";
@@ -8,11 +8,6 @@ import { deletePost, fetchPosts } from "../store/actions/postsAction";
 
 
 function Posts() {
-  const [activeModal, setActiveModal] = useState(false)
-
-  const handleOpenModal = () => {
-    setActiveModal(true)
-  }
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -41,7 +36,6 @@ function Posts() {
       />
       <PostsWrapper
         posts={posts}
-        handleOpenModal={handleOpenModal}
         deletePostHandler={deletePostHandler}
         onClickPostHandler={onClickPostHandler}
       />

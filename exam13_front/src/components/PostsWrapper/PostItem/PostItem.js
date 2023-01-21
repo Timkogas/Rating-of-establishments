@@ -1,5 +1,4 @@
 import { uploadsUrlPosts } from '../../../constants';
-import Button from '../../UI/Button/Button';
 import './PostItem.css'
 
 

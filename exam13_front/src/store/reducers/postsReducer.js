@@ -1,4 +1,3 @@
-import { getErrorTextFromResponse } from "../../helpers";
 import { ADD_POST_ERROR, ADD_POST_SUCCESS, DELETE_POST_SUCCESS, FETCH_POSTS_ERROR, FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS, FETCH_POST_SUCCESS, SET_NULL_ADD_POST_ERROR } from "../actionTypes/postsActionsType";
 
 

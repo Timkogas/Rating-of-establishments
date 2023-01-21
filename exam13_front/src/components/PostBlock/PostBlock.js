@@ -2,8 +2,7 @@ import { uploadsUrlPosts } from '../../constants';
 import AddReviewForm from './AddReviewForm/AddReviewForm';
 import './PostBlock.css'
 
-
-function PostBlock({ post }) {
+function PostBlock({ post, newReview, onChangeHandler }) {
   let imageSrc
   if (post?.image) {
     imageSrc = `${uploadsUrlPosts}/${post?.image}`;
@@ -60,7 +59,8 @@ function PostBlock({ post }) {
         <div className='post_block_hr'></div>
 
         <AddReviewForm
-
+          newReview={newReview}
+          onChangeHandler={onChangeHandler}
         />
       </div>
 

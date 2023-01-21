@@ -1,9 +1,8 @@
 import './PostsWrapper.css'
 import PostItem from './PostItem/PostItem';
-import Button from '../UI/Button/Button';
 
 
-function PostsWrapper({ handleOpenModal, posts, deletePostHandler, onClickPostHandler }) {
+function PostsWrapper({ posts, deletePostHandler, onClickPostHandler }) {
   return (
     <>
       <div className='posts_header'>

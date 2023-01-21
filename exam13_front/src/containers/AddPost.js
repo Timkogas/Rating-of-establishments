@@ -1,5 +1,5 @@
 import {useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AddPostForm from "../components/AddPostForm/AddPostForm";
 import { addPost } from "../store/actions/postsAction";
