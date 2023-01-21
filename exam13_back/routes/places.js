@@ -7,6 +7,7 @@ const Place = require("../models/Place");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 const permit = require("../middleware/permit");
+const Review = require("../models/Review");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -66,7 +67,10 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
 });
 
 router.delete("/:id", auth, permit('admin'), async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  if (!post) return res.sendStatus(404);
   try {
+    await Review.deleteMany({post: post._id});
     await Place.deleteOne({ _id: req.params.id });
     res.sendStatus(204);
   } catch (e) {

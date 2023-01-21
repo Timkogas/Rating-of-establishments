@@ -1,0 +1,47 @@
+const express = require("express");
+const { nanoid } = require("nanoid");
+const Place = require("../models/Place");
+const auth = require("../middleware/auth");
+const User = require("../models/User");
+const permit = require("../middleware/permit");
+const Review = require("../models/Review");
+const router = express.Router();
+
+
+router.post("/", auth, async (req, res) => {
+  const review = new Review(req.body);
+  try {
+    await review.save();
+    res.status(201).send(review);
+  } catch(e) {
+    res.status(400).send(e);
+  }
+});
+
+router.get("/", async (req, res) => {
+  let query;
+  if (req.query.post) {
+    query = {place: req.query.post};
+  }
+  try {
+    const reviews = await Review.find(query)
+      .sort({datetime: -1})
+      .populate('user', 'username')
+    res.send(reviews);
+  } catch(e) {
+    res.sendStatus(502);
+  }
+});
+
+router.delete("/:id", auth, permit('admin'), async (req, res) => {
+  const comment = await Comment.findById(req.params.id);
+  if (!comment) return res.sendStatus(404);
+  try {
+    await Comment.deleteOne({_id: comment._id});
+    res.sendStatus(204);
+  } catch(e) {
+    return res.status(502).send(e);
+  }
+});
+
+module.exports = router;

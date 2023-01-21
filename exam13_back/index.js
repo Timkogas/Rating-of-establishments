@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const { db } = require("./config");
 const users = require("./routes/users");
 const places = require("./routes/places");
-
+const reviews = require("./routes/reviews");
 const app = express();
 
 const port = 8000;
@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use("/users", users);
 app.use("/places", places);
+app.use("/reviews", reviews);
 
 
 const run = async () => {
