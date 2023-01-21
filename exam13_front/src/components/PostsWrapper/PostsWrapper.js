@@ -3,6 +3,7 @@ import PostItem from './PostItem/PostItem';
 
 
 function PostsWrapper({ posts, deletePostHandler, onClickPostHandler }) {
+  console.log(posts)
   return (
     <>
       <div className='posts_header'>
@@ -19,6 +20,7 @@ function PostsWrapper({ posts, deletePostHandler, onClickPostHandler }) {
               onClickPostHandler={()=>{onClickPostHandler(post._id)}}
               avarageRating={post.avarageRating}
               deletePostHandler={(e)=>{deletePostHandler(e, post._id)}}
+              totalReviews={post.totalReviews}
             />)
 
         }) : <h1>Нет заведений ;c</h1>}

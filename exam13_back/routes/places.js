@@ -29,6 +29,7 @@ router.get("/", async (req, res) => {
     for (let place of places) {
       const reviews = await (await Review.find({ place: place._id }))
       place.avarageRating = (((place.ratingQuality / reviews.length) + (place.ratingService / reviews.length) + (place.ratingInterior / reviews.length)) / 3).toFixed(1)
+      place.totalReviews = reviews.length
     }
     res.send(places);
   } catch (e) {

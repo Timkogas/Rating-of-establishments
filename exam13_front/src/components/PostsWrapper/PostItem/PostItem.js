@@ -3,7 +3,7 @@ import './PostItem.css'
 
 
 
-function PostItem({ title, img, deletePostHandler, onClickPostHandler, avarageRating }) {
+function PostItem({ title, img, deletePostHandler, onClickPostHandler, avarageRating, totalReviews}) {
 
   let imageSrc = `${uploadsUrlPosts}/${img}`;
 
@@ -19,6 +19,7 @@ function PostItem({ title, img, deletePostHandler, onClickPostHandler, avarageRa
         <div className='post_info_block'>
           <p className='post_title'>{title}</p>
           <span>{avarageRating  || 0}/5 средняя оценка</span>
+          <span>{totalReviews} количество отзывов</span>
         </div>
       </div>
     </>

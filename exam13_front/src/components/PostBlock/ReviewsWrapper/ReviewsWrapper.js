@@ -3,7 +3,7 @@ import ReviewItem from './ReviewItem/ReviewItem';
 import './ReviewsWrapper.css'
 
 function ReviewsWrapper({ reviews }) {
-  console.log(reviews)
+
   return (
     <>
       <div className='post_block_gallery'>
