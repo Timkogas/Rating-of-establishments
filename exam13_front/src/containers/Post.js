@@ -4,7 +4,7 @@ import Preloader from "../components/UI/Preloader/Preloader";
 import { useEffect, useState } from "react";
 import { addPicture, deletePicture, fetchPictures, fetchPost } from "../store/actions/postsAction";
 import PostBlock from "../components/PostBlock/PostBlock";
-import { addReview, fetchReviews } from "../store/actions/reviewsAction";
+import { addReview, deleteReview, fetchReviews } from "../store/actions/reviewsAction";
 
 
 function Post() {
@@ -109,6 +109,13 @@ function Post() {
     await dispatch(fetchPictures(params.id))
   }
 
+  const deleteReviewHandler = async(e, id) => {
+    e.stopPropagation()
+    await dispatch(deleteReview(id, {place: params.id}))
+    await dispatch(fetchPost(params.id))
+    await dispatch(fetchReviews(params.id))
+  }
+
 
 
   return (
@@ -121,7 +128,7 @@ function Post() {
         onChangeReviewHandler={onChangeReviewHandler}
         addReviewHandler={addReviewHandler}
         picturesPost={picturesPost}
-
+        deleteReviewHandler={deleteReviewHandler}
         filename={filename}
         onChangePictureHandler={onChangePictureHandler}
         addPictureHandler={addPictureHandler}

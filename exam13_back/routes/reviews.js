@@ -41,11 +41,12 @@ router.get("/", async (req, res) => {
 router.delete("/:id", auth, permit('admin'), async (req, res) => {
   try {
     const review = await Review.findById(req.params.id);
-    if (!comment) return res.sendStatus(404);
-    const place = await Place.findById(req.body.place);
+    if (!review) return res.sendStatus(404);
+    const place = await Place.findById(review.place);
     place.ratingQuality -= review.ratingQuality
     place.ratingService -= review.ratingService
     place.ratingInterior -= review.ratingInterior
+    await place.save()
     await Review.deleteOne({ _id: review._id });
     res.sendStatus(204);
   } catch (e) {

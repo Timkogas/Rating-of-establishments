@@ -39,3 +39,16 @@ export const addReview = (review) => {
     }
   };
 };
+
+export const deleteReview = (reviewId, place) => {
+  return async (dispatch) => {
+    dispatch(fetchReviewsRequest())
+    try {
+      await axios.delete(`/reviews/${reviewId}`, place)
+      dispatch(addReviewsSuccess())
+    } catch (e) {
+      dispatch(fetchReviewsError(e?.response?.data?.message))
+
+    }
+  }
+}

@@ -1,7 +1,8 @@
 
+import DeleteBtn from '../../../UI/DeleteBtn/DeleteBtn';
 import './ReviewItem.css'
 
-function ReviewItem({text, datetime, author, ratingInterior, ratingQuality, ratingService}) {
+function ReviewItem({text, datetime, author, ratingInterior, ratingQuality, ratingService, deleteReviewHandler}) {
 
   return (
     <>
@@ -13,9 +14,12 @@ function ReviewItem({text, datetime, author, ratingInterior, ratingQuality, rati
           </div>
           <div className='review_ratings'>
             <span><strong>Качество еды: </strong> {ratingQuality}/5</span>
-            <span><strong>Качество сервеса: </strong> {ratingQuality}/5</span>
+            <span><strong>Качество сервеса: </strong> {ratingService}/5</span>
             <span><strong>Качество интерьера: </strong> {ratingInterior}/5</span>
           </div>
+          <DeleteBtn
+            onClick={deleteReviewHandler}
+          />
         </div>
     </>
   );

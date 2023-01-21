@@ -2,6 +2,7 @@
   display: block;
   border: 2px solid #41B3A3;
   padding: 20px 20px;
+  position: relative;
 }
 .review_author {
   margin-left: 20px;

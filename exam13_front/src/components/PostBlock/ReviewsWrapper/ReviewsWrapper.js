@@ -2,7 +2,7 @@
 import ReviewItem from './ReviewItem/ReviewItem';
 import './ReviewsWrapper.css'
 
-function ReviewsWrapper({ reviews }) {
+function ReviewsWrapper({ reviews, deleteReviewHandler }) {
 
   return (
     <>
@@ -19,6 +19,7 @@ function ReviewsWrapper({ reviews }) {
             ratingInterior={review.ratingInterior}
             ratingQuality={review.ratingQuality}
             ratingService={review.ratingService}
+            deleteReviewHandler={(e)=>{deleteReviewHandler(e, review._id)}}
           />)
         }): 'Отзывов нет :с'}
       </div>
